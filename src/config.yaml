@@ -3,8 +3,8 @@ time_api:
 
 weather_api:
     appid: 'id from openweathermap.org'
-    lat: 'your latitude'
-    lon: 'your longitude'
+    lat: 'latitude'
+    lon: 'longitude'
     units: 'metric'
     lang: 'de'
 
