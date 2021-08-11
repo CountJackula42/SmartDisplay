@@ -1,0 +1,16 @@
+time_api:
+    timezone: 'Europe/Berlin'
+
+weather_api:
+    appid: 'id from openweathermap.org'
+    lat: 'your latitude'
+    lon: 'your longitude'
+    units: 'metric'
+    lang: 'de'
+
+transport_api:
+    sbahn_station: 'S-Bahn station name'
+    sbahn_label: 'S-Bahn label name'
+    bus_station: 'Bus station name'
+    bus_label: 'Bus label name'
+
