@@ -26,12 +26,4 @@ class MvgStation():
 
 
 if __name__ == '__main__':
-    bus = MvgStation(station_name='Feldstraße, Fürstenfeldbruck')
-    bus.get_departures(label='REGIONAL_BUS', timezone='Europe/Berlin')
-    bus.departures
-    print(bus.departures)
-
-    sbahn = MvgStation(station_name='Fürstenfeldbruck')
-    sbahn.get_departures(label='SBAHN', timezone='Europe/Berlin')
-    sbahn.departures
-    print(sbahn.departures)
+    pass

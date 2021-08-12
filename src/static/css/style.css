@@ -1,6 +1,9 @@
 html, body { width: 1072px; height: 1268px; overflow: hidden; font-family: 'Roboto', serif; font-size: 24px; position: relative; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 hr { clear: both; border: 1px #ccc solid; }
+img { 
+    filter: grayscale(100%)
+}
 
 #date { font-size: 200%; float: right; margin-right: 0.5em; text-align: right; }
 #time { font-size: 450%; }

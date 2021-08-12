@@ -304,7 +304,12 @@ var Screendle = function() {
                     html += '<td class="line">' + departures[i].label + '</td>';
                     html += '<td class="direction">' + departures[i].destination.replace(/ \(.*\)$|, .*$/, '') + '</td>';
                     html += '<td class="time">';
-                    html += departures[i].formatedTime;
+                    if (departures[i].cancelled) {
+                        html += '<del>' + departures[i].formatedTime + '</del>';
+                    }
+                    else {
+                        html += departures[i].formatedTime;
+                    }
                     if (departures[i].delay) {
                         html += '<span class="delay"> ' + departures[i].delay + '</span>';
                     }
