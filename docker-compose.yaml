@@ -1,0 +1,11 @@
+services:
+    webapp:
+        build: .
+        image: smartdisplay:latest
+        ports:
+            - "8000:8000"
+        volumes:
+            - type: bind
+              source: ./src
+              target: /app/src
+        command: gunicorn --bind '0.0.0.0:8000' 'smartdisplay:app'

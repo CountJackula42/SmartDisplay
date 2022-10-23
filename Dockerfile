@@ -1,24 +1,37 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.9-slim-buster
+# base image (abstract)
+##
+FROM python:3.10.5-alpine3.16 as base
+
+# Env vars
+ENV PYTHONIOENCODING=utf-8 \
+    LANG=C.UTF-8 \ 
+    USER=dbt
 
 WORKDIR /app/
 COPY requirements.txt requirements.txt
 
-RUN apt-get update &&\
-    apt-get install -y locales ntp && \
-    sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    apt-get clean && \
-    pip3 install -r requirements.txt
+RUN apk add --no-cache \
+    tzdata && \
+    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    echo "Europe/Berlin" >  /etc/timezone && \
+    apk del tzdata && \
+    python -m pip install \
+        --upgrade pip setuptools wheel \
+        --no-cache-dir && \
+    python -m pip install \
+        -r requirements.txt
 
 ENV LANG de_DE.UTF-8
 ENV LC_ALL de_DE.UTF-8
 
-COPY . .
+#COPY . .
 
 WORKDIR /app/src
+VOLUME [ "/app/src" ]
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+#ENTRYPOINT [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "gunicorn" "--bind '0.0.0.0:5000'" "'smartdisplay:app'" ]
