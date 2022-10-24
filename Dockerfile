@@ -6,11 +6,14 @@ FROM python:3.10.5-alpine3.16 as base
 
 # Env vars
 ENV PYTHONIOENCODING=utf-8 \
-    LANG=C.UTF-8 \ 
-    USER=dbt
+    TZ=Europe/Berlin \
+    LANG=de_DE.UTF-8 \
+    LANGUAGE=de_DE.UTF-8 \
+    LC_ALL=de_DE.UTF-8
 
-WORKDIR /app/
-COPY requirements.txt requirements.txt
+VOLUME [ "/app/src" ]
+WORKDIR /app/src
+COPY requirements.txt /app/src/requirements.txt
 
 RUN apk add --no-cache \
     tzdata && \
@@ -23,13 +26,12 @@ RUN apk add --no-cache \
     python -m pip install \
         -r requirements.txt
 
-ENV LANG de_DE.UTF-8
-ENV LC_ALL de_DE.UTF-8
+
 
 #COPY . .
 
-WORKDIR /app/src
-VOLUME [ "/app/src" ]
+#WORKDIR /app/src
+
 
 EXPOSE 8000
 
