@@ -1,6 +1,6 @@
 from datetime import datetime
 from time import timezone
-from babel.dates import format_date, get_timezone, format_time, UTC
+from babel.dates import get_timezone, format_time, format_datetime, UTC
 #import json
 #import locale
 #import pytz
@@ -17,10 +17,11 @@ def get_time(timezone):
 def get_date(timezone):
     tz = get_timezone(timezone)
     d = datetime.now(tz=UTC)
-    date = format_date(d, "EEEE'<br>'d.MMMM", locale='de')
+    date = format_datetime(d, "EEEE'<br>'d.MMMM", tzinfo=tz, locale='de')
     #locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
     #tz = pytz.timezone(timezone)
     #date = datetime.now().astimezone(tz).strftime('%A<br>%-d. %B')
+    return date
     return date
 
 if __name__ == '__main__':
