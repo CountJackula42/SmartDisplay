@@ -2,6 +2,9 @@ services:
     webapp:
         build: .
         image: smartdisplay:latest
+        environment:
+            - VIRTUAL_PORT=8000
+            - VIRTUAL_HOST=smartdisplay.raspberrypi.local
         ports:
             - "8000:8000"
         volumes:
