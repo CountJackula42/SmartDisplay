@@ -1,8 +1,7 @@
 services:
     webapp:
-        build: .
-        restart: always
         image: yuduu/smartdisplay:latest
+        restart: always
         environment:
             - VIRTUAL_PORT=8000
             - VIRTUAL_HOST=smartdisplay.raspberrypi.local
