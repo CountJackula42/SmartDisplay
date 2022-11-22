@@ -41,3 +41,5 @@ The server is running on a raspberry pi 3 inside a docker container.
 docker run -d --name smart-display --net=host smart-display
 ```
 
+
+
